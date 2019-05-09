@@ -1,6 +1,7 @@
 package com.example.beijingnews;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -10,8 +11,13 @@ import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.activitys.GuideActivity;
+import com.example.utils.CacheUtils;
+
 public class MainActivity extends Activity {
 
+    ///静态常量  先连同冒号一起选中字符串, 然后按下 command + option + c 抽取字符串到类
+    public static final String START_MAIN = "start_main";
     ///根页面的布局
     private RelativeLayout rl_splahs_root;
 
@@ -62,6 +68,27 @@ public class MainActivity extends Activity {
 
         @Override
         public void onAnimationEnd(Animation animation) {
+
+            //判断是否进入过主页面,
+
+
+            // 使用 option + enter 组合键打开提示,然后直接创建方法
+            boolean isStartMain = CacheUtils.getBoolean(MainActivity.this,START_MAIN);
+
+            if (isStartMain) {
+                //如果 进入过主页面,直接进入主页面,
+
+            } else {
+                //如果没有进入过主页面,先进入引导页
+
+            }
+
+
+            Intent intent = new Intent(MainActivity.this, GuideActivity.class);
+            startActivity(intent);
+
+            finish();
+
             Toast.makeText(MainActivity.this, "开场动画播放完成了", Toast.LENGTH_SHORT).show();
         }
 
@@ -73,7 +100,3 @@ public class MainActivity extends Activity {
 
 
 }
-
-
-
-// 从来没有过的事情,不值啊和这个范围之 内的
