@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import com.example.beijingnews.SplashActivity;
 import com.example.beijingnews.R;
 import com.example.utils.CacheUtils;
+import com.example.utils.DensityUtil;
 
 import java.util.ArrayList;
 
@@ -65,10 +66,13 @@ public class GuideActivity extends Activity {
             ImageView point = new ImageView(this);
             point.setBackgroundResource(R.drawable.point_normal);
 
+
+            int px = DensityUtil.dip2px(this, 20);  //代码里取到的值是 px, 布局文件里的值用的是 dp
+
             // 这里的宽高 单位是像素
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(50, 50);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(px, px);
             if (i != 0) { //不包括第0个, 所有的点距离左边50个像素
-                params.leftMargin = 50;
+                params.leftMargin = px;
             }
             point.setLayoutParams(params);
 

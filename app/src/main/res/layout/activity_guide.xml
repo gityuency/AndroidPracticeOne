@@ -46,8 +46,8 @@
 
         <ImageView
             android:id="@+id/iv_red_point"
-            android:layout_width="50px"
-            android:layout_height="50px"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@drawable/point_red"
             />
 

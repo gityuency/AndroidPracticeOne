@@ -77,13 +77,17 @@ public class SplashActivity extends Activity {
             boolean isStartMain = CacheUtils.getBoolean(SplashActivity.this, START_MAIN);
 
             Intent intent;
-            if (isStartMain) {
-                //如果 进入过主页面,直接进入主页面,
-                intent = new Intent(SplashActivity.this, MainActivity.class);
-            } else {
-                //如果没有进入过主页面,先进入引导页
-                intent = new Intent(SplashActivity.this, GuideActivity.class);
-            }
+
+            intent = new Intent(SplashActivity.this, GuideActivity.class);
+
+
+//            if (isStartMain) {
+//                //如果 进入过主页面,直接进入主页面,
+//                intent = new Intent(SplashActivity.this, MainActivity.class);
+//            } else {
+//                //如果没有进入过主页面,先进入引导页
+//                intent = new Intent(SplashActivity.this, GuideActivity.class);
+//            }
 
             startActivity(intent);
 
