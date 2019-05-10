@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 上面的那句话需要顶头,否则就会报错-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+
+    <!--这里的宽高 你写也没有用, 因为由控件决定,控件会拉伸-->
+
+    <size android:width="10dp" android:height="10dp"></size>
+
+    <solid android:color="@android:color/holo_red_light"></solid>
+
+</shape>

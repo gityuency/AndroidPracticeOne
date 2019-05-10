@@ -27,18 +27,32 @@
      .9 格式的图片要放到 drawable 文件下面,否则会报错?
     -->
 
-    <LinearLayout
-        android:id="@+id/ll_point_group"
+
+    <RelativeLayout
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:id="@+id/ll_point_group"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </LinearLayout>
 
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_red_point"
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:background="@drawable/point_red"
+            />
+
+    </RelativeLayout>
+
+
 
 
 
