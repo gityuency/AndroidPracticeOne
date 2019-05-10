@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fl_main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.activitys.MainActivity">
 
-
-    <TextView
-        android:layout_gravity="center"
-        android:textSize="30dp"
-        android:textColor="@android:color/holo_red_light"
-        android:layout_width="wrap_content"
-        android:text="掺金坷垃,世界发达."
-        android:layout_height="wrap_content" />
 
 
 </FrameLayout>
