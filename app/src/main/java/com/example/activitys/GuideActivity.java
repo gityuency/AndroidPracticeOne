@@ -1,6 +1,7 @@
 package com.example.activitys;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,7 +15,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import com.example.beijingnews.SplashActivity;
 import com.example.beijingnews.R;
+import com.example.utils.CacheUtils;
+
 import java.util.ArrayList;
 
 /**
@@ -80,6 +85,27 @@ public class GuideActivity extends Activity {
         //获得屏幕屏幕滑动的百分比
         viewpager.addOnPageChangeListener(new MyPageChangeListener());
 
+        //设置按钮的点击事件
+        btn_start_main.setOnClickListener(new MyButtonClickListener());
+
+    }
+
+    //按钮点击事件的类
+    class MyButtonClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+            //1.保存曾经进入过的参数
+            CacheUtils.putBoolean(GuideActivity.this, SplashActivity.START_MAIN, true);
+
+            //2.跳转到主页面
+            Intent intent = new Intent(GuideActivity.this, MainActivity.class);
+            startActivity(intent);
+
+            //3.关闭引导页面
+            finish();
+
+        }
     }
 
 
@@ -121,7 +147,12 @@ public class GuideActivity extends Activity {
          */
         @Override
         public void onPageSelected(int i) {
-
+            //在最后一个页面显示按钮,其余的页面不显示按钮
+            if (i == imageViews.size() - 1) {
+                btn_start_main.setVisibility(View.VISIBLE);
+            } else {
+                btn_start_main.setVisibility(View.GONE);
+            }
         }
 
         /**
@@ -218,3 +249,5 @@ public class GuideActivity extends Activity {
     }
 
 }
+
+

@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rl_splahs_root"
-    android:background="@drawable/splash_bg_newyear"
-    tools:context=".MainActivity">
+    tools:context="com.example.activitys.MainActivity">
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:src="@drawable/splash_sheep_newyear"/>
+    <TextView
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:textColor="@android:color/holo_red_light"
+        android:layout_width="wrap_content"
+        android:text="掺金坷垃,世界发达."
+        android:layout_height="wrap_content" />
 
 
-
-</RelativeLayout>
+</FrameLayout>

@@ -21,10 +21,11 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="开始体验"
+        android:visibility="gone"
         android:textColor="@drawable/btn_start_main_textcolor_selector"
         android:textSize="20dp" />
     <!-- 这个地方 btn_start_main_textcolor_selector 字母不能大写
-     .9 格式的图片要放到 drawable 文件下面,否则会报错?
+     .9 格式的图片要放到 drawable 文件下面,否则会报错?  在初始化的时候先隐藏起来
     -->
 
 

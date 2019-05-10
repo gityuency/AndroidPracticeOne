@@ -21,7 +21,17 @@ public class CacheUtils {
      */
     public static boolean getBoolean(Context context, String key) {
         SharedPreferences sp = context.getSharedPreferences("beijingxingwe", context.MODE_PRIVATE);
-        sp.getBoolean(key, false);
-        return true;
+        return sp.getBoolean(key, false);
+    }
+
+    /**
+     * 保存参数, 曾经看到过引导页
+     * @param context
+     * @param key
+     * @param value
+     */
+    public static void putBoolean(Context context, String key, boolean value) {
+        SharedPreferences sp = context.getSharedPreferences("beijingxingwe", context.MODE_PRIVATE);
+        sp.edit().putBoolean(key, value).commit();
     }
 }

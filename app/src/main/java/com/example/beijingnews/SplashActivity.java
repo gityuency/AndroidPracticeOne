@@ -12,9 +12,10 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.activitys.GuideActivity;
+import com.example.activitys.MainActivity;
 import com.example.utils.CacheUtils;
 
-public class MainActivity extends Activity {
+public class SplashActivity extends Activity {
 
     ///静态常量  先连同冒号一起选中字符串, 然后按下 command + option + c 抽取字符串到类
     public static final String START_MAIN = "start_main";
@@ -24,7 +25,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splash);
 
         rl_splahs_root = findViewById(R.id.rl_splahs_root);
 
@@ -73,23 +74,22 @@ public class MainActivity extends Activity {
 
 
             // 使用 option + enter 组合键打开提示,然后直接创建方法
-            boolean isStartMain = CacheUtils.getBoolean(MainActivity.this,START_MAIN);
+            boolean isStartMain = CacheUtils.getBoolean(SplashActivity.this, START_MAIN);
 
+            Intent intent;
             if (isStartMain) {
                 //如果 进入过主页面,直接进入主页面,
-
+                intent = new Intent(SplashActivity.this, MainActivity.class);
             } else {
                 //如果没有进入过主页面,先进入引导页
-
+                intent = new Intent(SplashActivity.this, GuideActivity.class);
             }
 
-
-            Intent intent = new Intent(MainActivity.this, GuideActivity.class);
             startActivity(intent);
 
             finish();
 
-            Toast.makeText(MainActivity.this, "开场动画播放完成了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SplashActivity.this, "开场动画播放完成了", Toast.LENGTH_SHORT).show();
         }
 
         @Override
