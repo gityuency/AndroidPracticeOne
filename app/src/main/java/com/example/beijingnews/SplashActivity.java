@@ -50,7 +50,7 @@ public class SplashActivity extends Activity {
         set.addAnimation(aa);
         set.addAnimation(ra);
         set.addAnimation(sa);
-        set.setDuration(2000); //优先执行这个时间
+        set.setDuration(500); //优先执行这个时间
 
         rl_splahs_root.startAnimation(set);
 
