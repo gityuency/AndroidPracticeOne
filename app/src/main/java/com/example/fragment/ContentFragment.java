@@ -5,11 +5,19 @@ import android.view.View;
 import android.widget.RadioGroup;
 
 import com.example.base.BaseFragment;
+import com.example.base.BasePager;
 import com.example.beijingnews.R;
+import com.example.pager.GovaffairPager;
+import com.example.pager.HomePager;
+import com.example.pager.NewsCenterPager;
+import com.example.pager.SettingPager;
+import com.example.pager.SmartServicePager;
 import com.example.utils.LogUtil;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
+
+import java.util.ArrayList;
 
 // 去掉不必要的包 快捷键  Ctrl+Alt+O
 
@@ -23,6 +31,12 @@ public class ContentFragment extends BaseFragment {
 
     @ViewInject(R.id.rg_main)
     private RadioGroup rg_main;
+
+
+    /**
+     * 装载页面的集合
+     */
+    private ArrayList<BasePager> basePagers;
 
 
     @Override
@@ -41,7 +55,6 @@ public class ContentFragment extends BaseFragment {
         x.view().inject(ContentFragment.this, view);
 
 
-
         return view;
     }
 
@@ -51,8 +64,45 @@ public class ContentFragment extends BaseFragment {
 
         LogUtil.e("正文数据被初始化了");
 
+
+        basePagers = new ArrayList<BasePager>();
+        basePagers.add(new HomePager(context));         //添加主页面
+        basePagers.add(new NewsCenterPager(context));   //新闻中心页面
+        basePagers.add(new SmartServicePager(context)); //智慧服务页面
+        basePagers.add(new GovaffairPager(context));    //政要页面
+        basePagers.add(new SettingPager(context));      //设置页面
+
+
         //设置默认选中首页
         rg_main.check(R.id.rb_home);
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
