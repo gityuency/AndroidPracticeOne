@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/title_red_bg">
+
+
+    <!--android:layout_centerInParent="true" 相对布局里面使用的居中方法-->
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="我是标题"
+        android:textColor="@android:color/white"
+        android:textSize="23sp" />
+
+
+    <!--android:background="@android:color/transparent" 这一步是把图片的背景设置为透明,-->
+    <!--菜单按钮默认隐藏起来,在适当的时候进行显示-->
+    <ImageButton
+        android:id="@+id/ib_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/img_menu"
+        android:visibility="gone" />
+
+</RelativeLayout>

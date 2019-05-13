@@ -18,7 +18,7 @@ public class ContentFragment extends BaseFragment {
 
     //2.注解的方式初始化控件
     @ViewInject(R.id.viewpager)
-    private ViewPager viewPager;  //用注解的时候, viewPager 这个名字可以任意改
+    private ViewPager viewPager;  //用注解的时候, viewPager 这个名字可以任意改 上面写注解,下面写属性
 
 
     @ViewInject(R.id.rg_main)
