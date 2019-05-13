@@ -74,15 +74,46 @@ public class ContentFragment extends BaseFragment {
         basePagers.add(new GovaffairPager(context));    //政要页面
         basePagers.add(new SettingPager(context));      //设置页面
 
-        //设置默认选中首页
-        rg_main.check(R.id.rb_home);
 
         //设置适配器
         viewPager.setAdapter(new ContentFragmentAdapter());
 
+        //设置radiogroup的选中状态的监听
         rg_main.setOnCheckedChangeListener(new MyOnCheckChagendListener());
 
+        //监听某个页面被选中,初始化对应页面的数据
+        viewPager.addOnPageChangeListener(new MyOnPageChangeListener());
 
+        //设置默认选中首页
+        rg_main.check(R.id.rb_home);
+
+        basePagers.get(0).initData();  // 好像是因为 OnPageChangeListener 这个东西是在用户去改变之后才会触发, 所以这里需要 把 initData() 方法调用一次,否则 在首页看不到数据
+
+
+    }
+
+
+    class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
+
+        @Override
+        public void onPageScrolled(int i, float v, int i1) {
+
+        }
+
+        /**
+         * 当某个页面被选中的时候,回调的这个方法
+         *
+         * @param i 被选中页面的位置
+         */
+        @Override
+        public void onPageSelected(int i) {
+            basePagers.get(i).initData(); //调用被选中的页面的 initData()
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int i) {
+
+        }
     }
 
 
@@ -101,23 +132,23 @@ public class ContentFragment extends BaseFragment {
             switch (checkedId) {  //对应切换各个页面
 
                 case R.id.rb_home:
-                    viewPager.setCurrentItem(0,false);  //fasel 去掉动画效果, true 就是有动画效果
+                    viewPager.setCurrentItem(0, false);  //fasel 去掉动画效果, true 就是有动画效果
                     break;
 
                 case R.id.rb_newscenter:
-                    viewPager.setCurrentItem(1,false);
+                    viewPager.setCurrentItem(1, false);
                     break;
 
                 case R.id.rb_smartservice:
-                    viewPager.setCurrentItem(2,false);
+                    viewPager.setCurrentItem(2, false);
                     break;
 
                 case R.id.rb_govaffair:
-                    viewPager.setCurrentItem(3,false);
+                    viewPager.setCurrentItem(3, false);
                     break;
 
                 case R.id.rb_setting:
-                    viewPager.setCurrentItem(4,false);
+                    viewPager.setCurrentItem(4, false);
                     break;
             }
         }
@@ -136,6 +167,8 @@ public class ContentFragment extends BaseFragment {
 
         /**
          * 这个东西就相当于创建每一个view 所以在这里函数里面,我们需要return 出去一个 view
+         * <p>
+         * 这个viewpager初始化的时候就会默认创建2个视图,在点击的时候回动态创建下一个视图和销毁不需要的视图, 这个方法是经常被调用的
          *
          * @param container
          * @param position
@@ -149,7 +182,7 @@ public class ContentFragment extends BaseFragment {
             View rootView = pager.rootView;   //各个页面
 
             //调用各个页面的initData方法
-            pager.initData(); //初始化数据
+            //pager.initData(); //初始化数据  放在这里会有重复调用,重复调用的嫌疑
 
             //添加到容器中
             container.addView(rootView);
