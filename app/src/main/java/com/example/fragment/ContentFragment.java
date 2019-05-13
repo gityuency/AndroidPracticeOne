@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
+import com.example.activitys.MainActivity;
 import com.example.base.BaseFragment;
 import com.example.base.BasePager;
 import com.example.beijingnews.R;
@@ -17,6 +18,7 @@ import com.example.pager.SettingPager;
 import com.example.pager.SmartServicePager;
 import com.example.utils.LogUtil;
 import com.example.view.NoScrollViewPager;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -90,6 +92,8 @@ public class ContentFragment extends BaseFragment {
         basePagers.get(0).initData();  // 好像是因为 OnPageChangeListener 这个东西是在用户去改变之后才会触发, 所以这里需要 把 initData() 方法调用一次,否则 在首页看不到数据
 
 
+        isEnableSlidingMenu(SlidingMenu.TOUCHMODE_NONE); //默认也不能滑动
+
     }
 
 
@@ -133,27 +137,43 @@ public class ContentFragment extends BaseFragment {
 
                 case R.id.rb_home:
                     viewPager.setCurrentItem(0, false);  //fasel 去掉动画效果, true 就是有动画效果
+                    isEnableSlidingMenu(SlidingMenu.TOUCHMODE_NONE);
                     break;
 
                 case R.id.rb_newscenter:
                     viewPager.setCurrentItem(1, false);
+                    isEnableSlidingMenu(SlidingMenu.TOUCHMODE_FULLSCREEN);
                     break;
 
                 case R.id.rb_smartservice:
                     viewPager.setCurrentItem(2, false);
+                    isEnableSlidingMenu(SlidingMenu.TOUCHMODE_NONE);
                     break;
 
                 case R.id.rb_govaffair:
                     viewPager.setCurrentItem(3, false);
+                    isEnableSlidingMenu(SlidingMenu.TOUCHMODE_NONE);
                     break;
 
                 case R.id.rb_setting:
                     viewPager.setCurrentItem(4, false);
+                    isEnableSlidingMenu(SlidingMenu.TOUCHMODE_NONE);
                     break;
             }
         }
+
+
     }
 
+
+    /**
+     * 根据传入的参数 设置 侧滑菜单 是否可以滑动
+     * 选中一段代码, 按住  Command + Alt + M 抽取出方法
+     */
+    private void isEnableSlidingMenu(int touchModel) {
+        MainActivity mainActivity = (MainActivity) context;
+        mainActivity.getSlidingMenu().setTouchModeAbove(touchModel);
+    }
 
     /**
      * 滚动页面的自定义类
