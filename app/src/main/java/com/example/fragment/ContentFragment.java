@@ -16,6 +16,7 @@ import com.example.pager.NewsCenterPager;
 import com.example.pager.SettingPager;
 import com.example.pager.SmartServicePager;
 import com.example.utils.LogUtil;
+import com.example.view.NoScrollViewPager;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -29,7 +30,7 @@ public class ContentFragment extends BaseFragment {
 
     //2.注解的方式初始化控件
     @ViewInject(R.id.viewpager)
-    private ViewPager viewPager;  //用注解的时候, viewPager 这个名字可以任意改 上面写注解,下面写属性
+    private NoScrollViewPager viewPager;  //用注解的时候, viewPager 这个名字可以任意改 上面写注解,下面写属性
 
 
     @ViewInject(R.id.rg_main)

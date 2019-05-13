@@ -5,7 +5,10 @@
     android:orientation="vertical">
 
     <!--高度设置为0dp的时候,需要设置权重, 这里的id 也叫做  viewpager 不会有冲突, 就相当于是两个班级里面的张三-->
-    <android.support.v4.view.ViewPager
+
+    <!-- android.support.v4.view.ViewPager 替换为  com.example.view.NoScrollViewPager  如果是替换自定义的控件, 需要拷贝全路径名字 -->
+
+    <com.example.view.NoScrollViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
