@@ -78,8 +78,54 @@ public class ContentFragment extends BaseFragment {
 
         //设置适配器
         viewPager.setAdapter(new ContentFragmentAdapter());
+
+        rg_main.setOnCheckedChangeListener(new MyOnCheckChagendListener());
+
+
     }
 
+
+    /**
+     * 下方按钮点击的
+     */
+    class MyOnCheckChagendListener implements RadioGroup.OnCheckedChangeListener {
+
+        /**
+         * @param group
+         * @param checkedId 被选中的 radiobutton id
+         */
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+            switch (checkedId) {  //对应切换各个页面
+
+                case R.id.rb_home:
+                    viewPager.setCurrentItem(0,false);  //fasel 去掉动画效果, true 就是有动画效果
+                    break;
+
+                case R.id.rb_newscenter:
+                    viewPager.setCurrentItem(1,false);
+                    break;
+
+                case R.id.rb_smartservice:
+                    viewPager.setCurrentItem(2,false);
+                    break;
+
+                case R.id.rb_govaffair:
+                    viewPager.setCurrentItem(3,false);
+                    break;
+
+                case R.id.rb_setting:
+                    viewPager.setCurrentItem(4,false);
+                    break;
+            }
+        }
+    }
+
+
+    /**
+     * 滚动页面的自定义类
+     */
     class ContentFragmentAdapter extends PagerAdapter {
 
         @Override
