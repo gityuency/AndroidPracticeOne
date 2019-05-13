@@ -1,7 +1,10 @@
 package com.example.fragment;
 
+import android.support.annotation.NonNull;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
 import com.example.base.BaseFragment;
@@ -54,7 +57,6 @@ public class ContentFragment extends BaseFragment {
         //1.把视图注入到框架中,让 ContentFragment.this 和 view 关联起来
         x.view().inject(ContentFragment.this, view);
 
-
         return view;
     }
 
@@ -64,7 +66,6 @@ public class ContentFragment extends BaseFragment {
 
         LogUtil.e("正文数据被初始化了");
 
-
         basePagers = new ArrayList<BasePager>();
         basePagers.add(new HomePager(context));         //添加主页面
         basePagers.add(new NewsCenterPager(context));   //新闻中心页面
@@ -72,11 +73,58 @@ public class ContentFragment extends BaseFragment {
         basePagers.add(new GovaffairPager(context));    //政要页面
         basePagers.add(new SettingPager(context));      //设置页面
 
-
         //设置默认选中首页
         rg_main.check(R.id.rb_home);
 
+        //设置适配器
+        viewPager.setAdapter(new ContentFragmentAdapter());
     }
+
+    class ContentFragmentAdapter extends PagerAdapter {
+
+        @Override
+        public int getCount() {
+            return basePagers.size();
+        }
+
+        /**
+         * 这个东西就相当于创建每一个view 所以在这里函数里面,我们需要return 出去一个 view
+         *
+         * @param container
+         * @param position
+         * @return
+         */
+        @NonNull
+        @Override
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
+
+            BasePager pager = basePagers.get(position);  //各个页面的实例
+            View rootView = pager.rootView;   //各个页面
+
+            //调用各个页面的initData方法
+            pager.initData(); //初始化数据
+
+            //添加到容器中
+            container.addView(rootView);
+
+            return rootView; //最后把这个view返回出去
+        }
+
+        @Override
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
+            return view == o;
+        }
+
+
+        @Override
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+
+            container.removeView((View) object);
+
+            //super.destroyItem(container, position, object); //删除这句话
+        }
+    }
+
 }
 
 
