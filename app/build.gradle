@@ -25,5 +25,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    compile project(path: ':SlidingMenu_library')
+    implementation project(path: ':SlidingMenu_library')
+
+    implementation project(path: ':xutils')  //这个是关联本地库
+    //implementation 'org.xutils:xutils:3.3.36'  //这个是关联网络库 两者只能选择一个
+
+
 }
