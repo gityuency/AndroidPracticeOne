@@ -1,9 +1,9 @@
 package com.example.activitys;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.WindowManager;
 
 import com.example.beijingnews.R;
 import com.example.fragment.ContentFragment;
@@ -21,6 +21,11 @@ public class MainActivity extends SlidingFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        // Android中布局内容被底部系统导航栏遮挡, 在Activity中调用如下代码就可以解决  系统说,也可以通过 App Theme 来设置
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+
 
         //设置左侧菜单
         setBehindContentView(R.layout.activity_leftmenu);

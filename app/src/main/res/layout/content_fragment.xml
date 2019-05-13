@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--高度设置为0dp的时候,需要设置权重, 这里的id 也叫做  viewpager 不会有冲突, 就相当于是两个班级里面的张三-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <!-- RadioGroup 这个东西继承自 线性布局-->
+    <RadioGroup
+        android:id="@+id/rg_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_tab_bg"
+        android:orientation="horizontal">
+
+
+        <!--android:layout_gravity="center_vertical" 相对于父视图是垂直的-->
+        <!--android:drawableTop="@drawable/rb_home_drawable_selector" 这个东西用于创建顶部的图片-->
+        <!--android:button="@null" 把按钮上的圈圈干掉  或者把背景设置为透明也可以 -->
+        <!--android:gravity="center" 内部居中-->
+        <!--android:drawablePadding="5dp" 图片和文字的间距-->
+        <!--把一些公共的样式 抽取到 values 文件夹下面  style="@style/bottom_tag_style" -->
+        <RadioButton
+            android:id="@+id/rb_home"
+            style="@style/bottom_tag_style"
+            android:drawableTop="@drawable/rb_home_drawable_selector"
+            android:gravity="center"
+            android:text="主页" />
+
+        <RadioButton
+            android:id="@+id/rb_newscenter"
+            style="@style/bottom_tag_style"
+            android:drawableTop="@drawable/rb_newscenter_drawable_selector"
+            android:gravity="center"
+            android:text="新闻" />
+
+        <RadioButton
+            android:id="@+id/rb_smartservice"
+            style="@style/bottom_tag_style"
+            android:drawableTop="@drawable/rb_smartservice_drawable_selector"
+            android:gravity="center"
+            android:text="智慧" />
+
+        <RadioButton
+            android:id="@+id/rb_govaffair"
+            style="@style/bottom_tag_style"
+            android:drawableTop="@drawable/rb_govaffair_drawable_selector"
+            android:gravity="center"
+            android:text="政要" />
+
+        <RadioButton
+            android:id="@+id/rb_setting"
+            style="@style/bottom_tag_style"
+            android:drawableTop="@drawable/rb_setting_drawable_selector"
+            android:gravity="center"
+            android:text="设置" />
+
+
+    </RadioGroup>
+
+
+</LinearLayout>
