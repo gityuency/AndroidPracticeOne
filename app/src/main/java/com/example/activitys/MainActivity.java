@@ -73,4 +73,43 @@ public class MainActivity extends SlidingFragmentActivity {
 
     }
 
+    /**
+     * 得到左侧菜单的 Fragment
+     */
+    public LeftmenuFragment getLeftmenuFragment() {
+
+        //FragmentManager fragmentManager = getSupportFragmentManager();
+        //return (LeftmenuFragment) fragmentManager.findFragmentByTag(LEFTMENU_TAG);
+
+        return (LeftmenuFragment) getSupportFragmentManager().findFragmentByTag(LEFTMENU_TAG);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

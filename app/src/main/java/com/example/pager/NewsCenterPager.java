@@ -1,13 +1,14 @@
 package com.example.pager;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.widget.TextView;
 
+import com.example.activitys.MainActivity;
 import com.example.base.BasePager;
 import com.example.domain.NewsCenterPagerBean;
+import com.example.fragment.LeftmenuFragment;
 import com.example.utils.Constants;
 import com.example.utils.LogUtil;
 import com.example.utils.YuencyFakeDataTool;
@@ -17,12 +18,15 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.List;
 
 public class NewsCenterPager extends BasePager {
+
+
+    /**
+     * 左侧菜单对应的数据集合
+     */
+    private List<NewsCenterPagerBean.DataBean> data;
 
 
     public NewsCenterPager(Context context) {
@@ -110,6 +114,17 @@ public class NewsCenterPager extends BasePager {
         NewsCenterPagerBean bean = new Gson().fromJson(result, NewsCenterPagerBean.class);  //创建一个 Gson 对象, 然后使用 fromJson ,然后传入参数, json 字符串 和 javabean
 
         String title = bean.getData().get(0).getChildren().get(1).getTitle();
+
+        data = bean.getData();
+
+        //在这里解析了新闻数据,要在这里把新闻数据传递到 左侧菜单,  先要找到 这个类所在的Activity,然后通过Activity 使用tag 来找到 fragment, 传递数据
+        MainActivity mainActivity = (MainActivity) context;
+
+        //得到左侧菜单
+        LeftmenuFragment leftmenuFragment = mainActivity.getLeftmenuFragment();
+
+        //把数据传递给左侧菜单
+        leftmenuFragment.setData(data);
 
         LogUtil.e("解析得到bean的标题" + title);
 
