@@ -108,7 +108,7 @@ public class LeftmenuFragment extends BaseFragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             TextView textView = (TextView) View.inflate(context, R.layout.item_leftmenu, null);   // 这个layout是一个 TextView, 所以这里需要强转.
             textView.setText(data.get(position).getTitle());
-            
+
             textView.setEnabled(position == prePosition);  //将当前点击的item设置为红色
 
             return textView;
