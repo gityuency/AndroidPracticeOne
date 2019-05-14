@@ -17,6 +17,10 @@ public class Constants {
     /**
      * 新闻中心的网络请求地址 字符串转化大写  command + shift + u    ctrl + shift + u 小写
      */
-    public static final String NEWSCENTER_PAGER_URL = BASE_URL + "";
+    public static final String NEWSCENTER_PAGER_URL = BASE_URL + "https://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/0-10.html";
+
+
+
+    // 网易云的api  "https://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/0-10.html";
 
 }
