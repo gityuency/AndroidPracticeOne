@@ -1,13 +1,11 @@
 package com.example.fragment;
 
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
 import com.example.activitys.MainActivity;
+import com.example.adapter.ContentFragmentAdapter;
 import com.example.base.BaseFragment;
 import com.example.base.BasePager;
 import com.example.beijingnews.R;
@@ -78,7 +76,7 @@ public class ContentFragment extends BaseFragment {
 
 
         //设置适配器
-        viewPager.setAdapter(new ContentFragmentAdapter());
+        viewPager.setAdapter(new ContentFragmentAdapter(basePagers));
 
         //设置radiogroup的选中状态的监听
         rg_main.setOnCheckedChangeListener(new MyOnCheckChagendListener());
@@ -161,10 +159,7 @@ public class ContentFragment extends BaseFragment {
                     break;
             }
         }
-
-
     }
-
 
     /**
      * 根据传入的参数 设置 侧滑菜单 是否可以滑动
@@ -173,56 +168,6 @@ public class ContentFragment extends BaseFragment {
     private void isEnableSlidingMenu(int touchModel) {
         MainActivity mainActivity = (MainActivity) context;
         mainActivity.getSlidingMenu().setTouchModeAbove(touchModel);
-    }
-
-    /**
-     * 滚动页面的自定义类
-     */
-    class ContentFragmentAdapter extends PagerAdapter {
-
-        @Override
-        public int getCount() {
-            return basePagers.size();
-        }
-
-        /**
-         * 这个东西就相当于创建每一个view 所以在这里函数里面,我们需要return 出去一个 view
-         * <p>
-         * 这个viewpager初始化的时候就会默认创建2个视图,在点击的时候回动态创建下一个视图和销毁不需要的视图, 这个方法是经常被调用的
-         *
-         * @param container
-         * @param position
-         * @return
-         */
-        @NonNull
-        @Override
-        public Object instantiateItem(@NonNull ViewGroup container, int position) {
-
-            BasePager pager = basePagers.get(position);  //各个页面的实例
-            View rootView = pager.rootView;   //各个页面
-
-            //调用各个页面的initData方法
-            //pager.initData(); //初始化数据  放在这里会有重复调用,重复调用的嫌疑
-
-            //添加到容器中
-            container.addView(rootView);
-
-            return rootView; //最后把这个view返回出去
-        }
-
-        @Override
-        public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-            return view == o;
-        }
-
-
-        @Override
-        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-
-            container.removeView((View) object);
-
-            //super.destroyItem(container, position, object); //删除这句话
-        }
     }
 
 }
