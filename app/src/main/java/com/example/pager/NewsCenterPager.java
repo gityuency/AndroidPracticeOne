@@ -7,9 +7,11 @@ import android.view.Gravity;
 import android.widget.TextView;
 
 import com.example.base.BasePager;
+import com.example.domain.NewsCenterPagerBean;
 import com.example.utils.Constants;
 import com.example.utils.LogUtil;
 import com.example.utils.YuencyFakeDataTool;
+import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -65,11 +67,10 @@ public class NewsCenterPager extends BasePager {
             @Override
             public void onSuccess(String result) {
 
+                String fakeJson = YuencyFakeDataTool.getJson("newscenter.json", context);
+                LogUtil.e("使用三方库联网请求成功!" + fakeJson + "转入自定义数据进行解析");
 
-                String s = YuencyFakeDataTool.getJson("newscenter.json", context);
-                LogUtil.e("使用三方库联网请求成功!" + s);
-
-
+                processData(fakeJson);
             }
 
             @Override
@@ -94,6 +95,23 @@ public class NewsCenterPager extends BasePager {
             }
 
         });
+
+    }
+
+    /**
+     * 解析数据和显示数据
+     *
+     * @param result
+     */
+    private void processData(String result) {
+
+        //这里导入了一个jar包, 把这个包复制,然后粘贴到libs文件夹上面,然后右键,选择 add as library
+
+        NewsCenterPagerBean bean = new Gson().fromJson(result, NewsCenterPagerBean.class);  //创建一个 Gson 对象, 然后使用 fromJson ,然后传入参数, json 字符串 和 javabean
+
+        String title = bean.getData().get(0).getChildren().get(1).getTitle();
+
+        LogUtil.e("解析得到bean的标题" + title);
 
     }
 
