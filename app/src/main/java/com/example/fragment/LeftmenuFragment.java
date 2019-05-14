@@ -12,6 +12,7 @@ import com.example.activitys.MainActivity;
 import com.example.base.BaseFragment;
 import com.example.beijingnews.R;
 import com.example.domain.NewsCenterPagerBean;
+import com.example.pager.NewsCenterPager;
 import com.example.utils.DensityUtil;
 import com.example.utils.LogUtil;
 
@@ -55,15 +56,25 @@ public class LeftmenuFragment extends BaseFragment {
                 MainActivity mainActivity = (MainActivity) context;
                 mainActivity.getSlidingMenu().toggle();  //在java里面,一个东西的显示与关闭,使用 toggle 这个单词  开就关, 关就开
 
-
                 //3.切换到对应的详情页面
-
+                swichPager(prePosition);
             }
         });
 
 
-
         return listView;
+    }
+
+    /**
+     * 根据位置切换不同的详情页面
+     *
+     * @param position
+     */
+    private void swichPager(int position) {
+        MainActivity mainActivity = (MainActivity) context;
+        ContentFragment contentFragment = mainActivity.getContentFragment();
+        NewsCenterPager newsCenterPager = contentFragment.getNewsCenterPager();
+        newsCenterPager.switchPager(position);
     }
 
     @Override
@@ -91,6 +102,10 @@ public class LeftmenuFragment extends BaseFragment {
 
         //设置适配器,这里有数据
         listView.setAdapter(adapter);
+
+        //在一开始有数据的时候, 也调用这个切换的方法 设置 默认的页面
+        swichPager(prePosition);
+
 
     }
 

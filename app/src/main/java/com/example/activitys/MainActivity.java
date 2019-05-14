@@ -83,6 +83,15 @@ public class MainActivity extends SlidingFragmentActivity {
 
         return (LeftmenuFragment) getSupportFragmentManager().findFragmentByTag(LEFTMENU_TAG);
     }
+
+    /**
+     * 得到正文的fragment
+     * @return
+     */
+    public ContentFragment getContentFragment() {
+
+        return (ContentFragment) getSupportFragmentManager().findFragmentByTag(MAIN_CONTENT_TAG);
+    }
 }
 
 

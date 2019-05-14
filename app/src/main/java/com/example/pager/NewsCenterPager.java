@@ -8,8 +8,13 @@ import android.widget.TextView;
 
 import com.example.activitys.MainActivity;
 import com.example.base.BasePager;
+import com.example.base.MenuDetailBasePager;
 import com.example.domain.NewsCenterPagerBean;
 import com.example.fragment.LeftmenuFragment;
+import com.example.menudetailpager.InteracMenuDetailPager;
+import com.example.menudetailpager.NewsMenuDetailPager;
+import com.example.menudetailpager.PhotosMenuDetailPager;
+import com.example.menudetailpager.TopicMenuDetailPager;
 import com.example.utils.Constants;
 import com.example.utils.LogUtil;
 import com.example.utils.YuencyFakeDataTool;
@@ -19,6 +24,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewsCenterPager extends BasePager {
@@ -33,6 +39,11 @@ public class NewsCenterPager extends BasePager {
     public NewsCenterPager(Context context) {
         super(context);
     }
+
+    /**
+     * 详情页面的集合
+     */
+    private ArrayList<MenuDetailBasePager> detailBasePagers;
 
     @Override
     public void initData() {
@@ -129,14 +140,47 @@ public class NewsCenterPager extends BasePager {
         //得到左侧菜单
         LeftmenuFragment leftmenuFragment = mainActivity.getLeftmenuFragment();
 
+
+        //添加详情页面
+        detailBasePagers = new ArrayList<>();  //在new 的时候已经可以不用指定泛型的类型了?
+        detailBasePagers.add(new NewsMenuDetailPager(context));
+        detailBasePagers.add(new TopicMenuDetailPager(context));
+        detailBasePagers.add(new PhotosMenuDetailPager(context));
+        detailBasePagers.add(new InteracMenuDetailPager(context));
+
+
         //把数据传递给左侧菜单
         leftmenuFragment.setData(data);
 
         LogUtil.e("解析得到bean的标题" + title);
 
+
+
+
     }
 
 
+    /**
+     * 根据位置切换详情页面
+     * @param position
+     */
+    public void switchPager(int position) {
+
+        //1.标题
+        tv_title.setText(data.get(position).getTitle());
+
+        //2.移除之前的内容,
+        fl_content.removeAllViews(); //
+
+
+        //3.添加新的内容
+        MenuDetailBasePager detailBasePager = detailBasePagers.get(position);
+        View rootView = detailBasePager.rootView;
+        detailBasePager.initData();  //初始化数据
+
+        fl_content.addView(rootView);
+
+    }
 }
 
 
