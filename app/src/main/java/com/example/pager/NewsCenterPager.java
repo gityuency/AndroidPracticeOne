@@ -3,6 +3,7 @@ package com.example.pager;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.activitys.MainActivity;
@@ -36,6 +37,11 @@ public class NewsCenterPager extends BasePager {
     @Override
     public void initData() {
         super.initData();
+
+
+        // 显示左上角的按钮图标
+        ib_menu.setVisibility(View.VISIBLE);
+
 
         //1.设置标题
         tv_title.setText("新闻中心");

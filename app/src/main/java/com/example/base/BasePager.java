@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.activitys.MainActivity;
 import com.example.beijingnews.R;
 
 /**
@@ -61,6 +62,14 @@ public class BasePager {
         tv_title = view.findViewById(R.id.tv_title);
         ib_menu = view.findViewById(R.id.ib_menu);
         fl_content = view.findViewById(R.id.fl_content);
+
+        ib_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity  mainActivity = (MainActivity) context;
+                mainActivity.getSlidingMenu().toggle(); //关闭左侧菜单
+            }
+        });
 
         return view;
     }
