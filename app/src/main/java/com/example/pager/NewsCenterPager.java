@@ -21,6 +21,9 @@ import com.example.utils.LogUtil;
 import com.example.utils.YuencyFakeDataTool;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -81,7 +84,7 @@ public class NewsCenterPager extends BasePager {
     private void getDataFromNet() {
 
 
-        RequestParams params = new RequestParams(Constants.NEWSCENTER_PAGER_URL);  //指定参数
+        final RequestParams params = new RequestParams(Constants.NEWSCENTER_PAGER_URL);  //指定参数
 
 
         x.http().get(params, new Callback.CommonCallback<String>() {  //使用 公共的回调 CommonCallback
@@ -94,12 +97,7 @@ public class NewsCenterPager extends BasePager {
 
                 processData(fakeJson);
 
-
-                // 自定义的对象,自己写一个json的model类
-                NewsCenterBeanByHand beanByHand = new Gson().fromJson(fakeJson, NewsCenterBeanByHand.class);
-                String title = beanByHand.getData().get(0).getChildren().get(1).getTitle();
-                LogUtil.e("自定义的鹅json **********************" + title);
-
+                parseJsonUseAndroidAPI(fakeJson);
 
             }
 
@@ -127,6 +125,7 @@ public class NewsCenterPager extends BasePager {
         });
 
     }
+
 
     /**
      * 解析数据和显示数据
@@ -189,6 +188,113 @@ public class NewsCenterPager extends BasePager {
         fl_content.addView(rootView);
 
     }
+
+
+    /**
+     * 使用Android系统自带API进行数据解析
+     *
+     * @param fakeJson
+     */
+    private void parseJsonUseAndroidAPI(String fakeJson) {
+
+        /*
+        // 自定义的对象,自己写一个json的model类
+        NewsCenterBeanByHand beanByHand = new Gson().fromJson(fakeJson, NewsCenterBeanByHand.class);
+        String title = beanByHand.getData().get(0).getChildren().get(1).getTitle();
+        LogUtil.e("自定义的鹅json **********************" + title);
+         */
+
+
+        NewsCenterBeanByHand bean2 = new NewsCenterBeanByHand();
+
+        try {
+
+            JSONObject object = new JSONObject(fakeJson);  //这里要用大写的 JSONObject. 小写的那个转不了
+
+            // 使用 optInt() 不会报错崩溃,只是会没有内容而已
+            int retcode = object.optInt("retcode");    //如果某天服务器不返回这个 retcode 字段, object.getInt("retcode") 这个方法就会崩溃
+
+            bean2.setRetcode(retcode);  //给字段赋值,解析成功
+
+            JSONArray data = object.optJSONArray("data");
+            if (data != null && data.length() > 0) {
+
+
+                List<NewsCenterBeanByHand.DetailPagerData> detailPagerDatas = new ArrayList<>();   // List 是抽象的类, ArrayList 是一个方法可以用来初始化?
+
+                // 设置列表数据
+                bean2.setData(detailPagerDatas);
+
+
+                //for 循环,解析 每一条数据
+                for (int i = 0; i < data.length(); i++) {  //这里的data是数组, 有 length  没有 size
+
+
+                    JSONObject jsonObject = (JSONObject) data.get(i);  //这里也可以用opt, 但是因为上面已经做了空和长度的判断,这里直接用 get 也没问题
+
+                    NewsCenterBeanByHand.DetailPagerData data1 = new NewsCenterBeanByHand.DetailPagerData();
+
+                    detailPagerDatas.add(data1); //添加到集合中
+
+                    int id = jsonObject.optInt("id");
+                    data1.setId(id);
+                    int type = jsonObject.optInt("type");
+                    data1.setType(type);
+                    String title = jsonObject.optString("title");
+                    data1.setTitle(title);
+                    String url = jsonObject.optString("url");
+                    data1.setUrl(url);
+                    String url1 = jsonObject.optString("url1");
+                    data1.setUrl1(url1);
+                    String excurl = jsonObject.optString("excurl");
+                    data1.setExcurl(excurl);
+                    String weekurl = jsonObject.optString("weekurl");
+                    data1.setWeekurl(weekurl);
+
+
+                    JSONArray children = jsonObject.optJSONArray("children");
+
+                    if (children != null && children.length() > 0) {
+
+                        List<NewsCenterBeanByHand.DetailPagerData.ChildrenData> childrenDataList = new ArrayList<>();
+
+                        data1.setChildren(childrenDataList);
+
+
+                        for (int j = 0; j < children.length(); j++) {
+
+                            JSONObject childrenItem = (JSONObject) data.get(j);
+
+                            NewsCenterBeanByHand.DetailPagerData.ChildrenData childrenData = new NewsCenterBeanByHand.DetailPagerData.ChildrenData();
+
+                            childrenDataList.add(childrenData);
+
+                            int childId = childrenItem.optInt("id");
+                            childrenData.setId(childId);
+                            int childtype = childrenItem.optInt("type");
+                            childrenData.setType(childtype);
+                            String childtitle = childrenItem.optString("title");
+                            childrenData.setTitle(childtitle);
+                            String childurl = childrenItem.optString("url");
+                            childrenData.setUrl(childurl);
+
+
+                        }
+                    }
+
+                }
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        bean2.getData().get(1).getChildren().get(1).getTitle();
+
+    }
+
+
 }
 
 
