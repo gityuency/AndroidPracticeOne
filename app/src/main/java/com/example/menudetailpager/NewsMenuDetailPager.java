@@ -1,14 +1,24 @@
 package com.example.menudetailpager;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.util.Log;
-import android.view.Gravity;
+import android.support.annotation.NonNull;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.base.MenuDetailBasePager;
+import com.example.beijingnews.R;
+import com.example.domain.NewsCenterPagerBean;
+import com.example.menudetailpager.tabledetailpager.TabDetailPager;
 import com.example.utils.LogUtil;
+
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -16,31 +26,93 @@ import com.example.utils.LogUtil;
  */
 public class NewsMenuDetailPager extends MenuDetailBasePager {
 
-    private TextView textView;
 
-    public NewsMenuDetailPager(Context context) {
+    @ViewInject(R.id.viewpager)  //这里后面不能有分号, 这个意思是这句话没写完?
+    private ViewPager viewPager;
+
+
+    /**
+     * 页签页面的数据集合
+     */
+    private List<NewsCenterPagerBean.DataBean.ChildrenBean> children;
+
+
+    /**
+     * 页签页面的的集合
+     */
+    private ArrayList<TabDetailPager> tabDetailPagers;
+
+
+    public NewsMenuDetailPager(Context context, NewsCenterPagerBean.DataBean dataBean) {
         super(context);
+
+        children = dataBean.getChildren();
+
     }
 
     @Override
     public View initView() {
 
-        //2.联网请求,得到数据,创建视图
-        textView = new TextView(context);
-        textView.setGravity(Gravity.CENTER);
-        textView.setTextColor(Color.RED);
-        textView.setTextSize(25);
+        View view = View.inflate(context, R.layout.newsmenu_detail_pager, null);   // newsmenu_detail_pager 这个布局文件名字里面不能有大写的字母
 
-        return textView;
+        x.view().inject(NewsMenuDetailPager.this, view); //使用这个含有两个参数的方法, 传入一个上下文 和 这个实例化出来的view
+
+        return view;
+
     }
 
     @Override
     public void initData() {
         super.initData();
 
-        LogUtil.e("新闻详情页面被初始化了............");
+        LogUtil.e("新闻详情页面被初始化了... .........");
 
-        textView.setText("新闻详情 页面的内容");
+        tabDetailPagers = new ArrayList<>();
+
+        //设置viewpager的是适配器  准备新闻详情页面的数据
+        for (int i = 0; i < children.size(); i++) {
+            tabDetailPagers.add(new TabDetailPager(context, children.get(i)));
+        }
+
+        viewPager.setAdapter(new MyNewsMenuDetailPagerAdapter());
 
     }
+
+
+    class MyNewsMenuDetailPagerAdapter extends PagerAdapter {
+
+        @Override
+        public int getCount() {
+            return tabDetailPagers.size();
+        }
+
+        @NonNull
+        @Override
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
+
+            //在这里返回视图
+            TabDetailPager tabDetailPager = tabDetailPagers.get(position);
+            View rootView = tabDetailPager.rootView;
+            tabDetailPager.initData();  //初始化数据
+            container.addView(rootView); //不要忘了 添加视图
+            return rootView;  //返回这个视图
+        }
+
+
+        @Override
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
+            return view == o;
+        }
+
+
+        @Override
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+
+            container.removeView((View) object);  //在这里移除这个
+
+            //super.destroyItem(container, position, object); 这一句注释掉
+        }
+    }
+
+
 }

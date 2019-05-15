@@ -110,27 +110,19 @@ public class NewsCenterPager extends BasePager {
                 //缓存数据 使用网址作为了 key
                 CacheUtils.putString(context,Constants.NEWSCENTER_PAGER_URL,fakeJson);
 
-
                 processData(fakeJson);  // 这个用于加载数据
 
-
                 parseJsonUseAndroidAPI(fakeJson);  //这个是练习用的原生解析
-
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
                 LogUtil.e("使用三方库联网请求 失败!" + ex.getMessage());
-
             }
 
             @Override
             public void onCancelled(CancelledException cex) {
-
                 LogUtil.e("使用三方库联网请求 取消!" + cex.getMessage());
-
-
             }
 
             @Override
@@ -168,7 +160,7 @@ public class NewsCenterPager extends BasePager {
 
         //添加详情页面
         detailBasePagers = new ArrayList<>();  //在new 的时候已经可以不用指定泛型的类型了?
-        detailBasePagers.add(new NewsMenuDetailPager(context));
+        detailBasePagers.add(new NewsMenuDetailPager(context,data.get(0)));
         detailBasePagers.add(new TopicMenuDetailPager(context));
         detailBasePagers.add(new PhotosMenuDetailPager(context));
         detailBasePagers.add(new InteracMenuDetailPager(context));
