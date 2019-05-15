@@ -2,6 +2,7 @@ package com.example.pager;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.example.menudetailpager.InteracMenuDetailPager;
 import com.example.menudetailpager.NewsMenuDetailPager;
 import com.example.menudetailpager.PhotosMenuDetailPager;
 import com.example.menudetailpager.TopicMenuDetailPager;
+import com.example.utils.CacheUtils;
 import com.example.utils.Constants;
 import com.example.utils.LogUtil;
 import com.example.utils.YuencyFakeDataTool;
@@ -74,6 +76,15 @@ public class NewsCenterPager extends BasePager {
         textView.setText("新闻中心");
 
 
+        // 先去找缓存, 缓存有数据,先加载缓存里面的数据, 先把UI显示出来,  然后再去网络请求,把请求到的最新的数据再写上去, 这个流程可以接受.
+
+
+        //在联网请求之前获取网络数据
+        String saveJson = CacheUtils.getString(context,Constants.NEWSCENTER_PAGER_URL);
+        if (!TextUtils.isEmpty(saveJson)) {    //这里的判断包含了  ""  和  null   的这样的情况?
+            processData(saveJson);  // 这个用于加载数据
+        }
+
         getDataFromNet();
 
     }
@@ -95,9 +106,15 @@ public class NewsCenterPager extends BasePager {
                 String fakeJson = YuencyFakeDataTool.getJson("newscenter.json", context);
                 LogUtil.e("使用三方库联网请求成功!" + fakeJson + "转入自定义数据进行解析");
 
-                processData(fakeJson);
 
-                parseJsonUseAndroidAPI(fakeJson);
+                //缓存数据 使用网址作为了 key
+                CacheUtils.putString(context,Constants.NEWSCENTER_PAGER_URL,fakeJson);
+
+
+                processData(fakeJson);  // 这个用于加载数据
+
+
+                parseJsonUseAndroidAPI(fakeJson);  //这个是练习用的原生解析
 
             }
 
