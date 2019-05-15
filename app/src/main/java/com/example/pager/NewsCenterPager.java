@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.activitys.MainActivity;
 import com.example.base.BasePager;
 import com.example.base.MenuDetailBasePager;
+import com.example.domain.NewsCenterBeanByHand;
 import com.example.domain.NewsCenterPagerBean;
 import com.example.fragment.LeftmenuFragment;
 import com.example.menudetailpager.InteracMenuDetailPager;
@@ -92,6 +93,14 @@ public class NewsCenterPager extends BasePager {
                 LogUtil.e("使用三方库联网请求成功!" + fakeJson + "转入自定义数据进行解析");
 
                 processData(fakeJson);
+
+
+                // 自定义的对象,自己写一个json的model类
+                NewsCenterBeanByHand beanByHand = new Gson().fromJson(fakeJson, NewsCenterBeanByHand.class);
+                String title = beanByHand.getData().get(0).getChildren().get(1).getTitle();
+                LogUtil.e("自定义的鹅json **********************" + title);
+
+
             }
 
             @Override
@@ -155,13 +164,12 @@ public class NewsCenterPager extends BasePager {
         LogUtil.e("解析得到bean的标题" + title);
 
 
-
-
     }
 
 
     /**
      * 根据位置切换详情页面
+     *
      * @param position
      */
     public void switchPager(int position) {
