@@ -7,6 +7,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.base.MenuDetailBasePager;
 import com.example.beijingnews.R;
@@ -36,6 +37,10 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
     private TabPageIndicator tabPageIndicator;
 
 
+    @ViewInject(R.id.ib_tab_next)
+    private ImageButton ib_tab_next;
+
+
     /**
      * 页签页面的数据集合
      */
@@ -58,9 +63,18 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
     @Override
     public View initView() {
 
-        View view = View.inflate(context, R.layout.newsmenu_detail_pager, null);   // newsmenu_detail_pager 这个布局文件名字里面不能有大写的字母
+        final View view = View.inflate(context, R.layout.newsmenu_detail_pager, null);   // newsmenu_detail_pager 这个布局文件名字里面不能有大写的字母
 
         x.view().inject(NewsMenuDetailPager.this, view); //使用这个含有两个参数的方法, 传入一个上下文 和 这个实例化出来的view
+
+        //按钮
+        ib_tab_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+            }
+        });
+
 
         return view;
 
