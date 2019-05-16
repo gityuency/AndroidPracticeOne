@@ -1,0 +1,1 @@
+[{"outputType":{"type":"INSTANT_RUN_MERGED_MANIFESTS"},"apkData":{"type":"MAIN","splits":[],"versionCode":65,"versionName":"2.4.1","enabled":true,"outputFile":"ViewPagerIndicator_sample-release-unsigned.apk","fullName":"release","baseName":"release"},"path":"AndroidManifest.xml","properties":{"packageId":"com.viewpagerindicator.sample","split":"","minSdkVersion":"14"}}]

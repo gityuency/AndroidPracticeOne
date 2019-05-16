@@ -2,17 +2,18 @@ package com.example.menudetailpager;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.base.MenuDetailBasePager;
 import com.example.beijingnews.R;
 import com.example.domain.NewsCenterPagerBean;
 import com.example.menudetailpager.tabledetailpager.TabDetailPager;
 import com.example.utils.LogUtil;
+import com.viewpagerindicator.TabPageIndicator;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -29,6 +30,10 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
 
     @ViewInject(R.id.viewpager)  //这里后面不能有分号, 这个意思是这句话没写完?
     private ViewPager viewPager;
+
+
+    @ViewInject(R.id.tabPageIndicator)
+    private TabPageIndicator tabPageIndicator;
 
 
     /**
@@ -76,10 +81,29 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
 
         viewPager.setAdapter(new MyNewsMenuDetailPagerAdapter());
 
+
+        //这个三方库 TabPageIndicator 一定要在 设置了适配器之后, 才能使用初始化的代码,否则会崩溃    TabPageIndicator 和 ViewPager 关联
+        tabPageIndicator.setViewPager(viewPager);
+
+        //主页以后监听页面的变化, TabPageIndicator 监听页面的变化
+
+
+
     }
 
 
     class MyNewsMenuDetailPagerAdapter extends PagerAdapter {
+
+        /**
+         * 这个函数返回上方 indicator 的标题 这个标题应该是被第三方截获了
+         * @param position
+         * @return
+         */
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return children.get(position).getTitle();
+        }
 
         @Override
         public int getCount() {
