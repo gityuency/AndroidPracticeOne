@@ -282,6 +282,12 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
         }
     }
 
+
+    /**
+     * Android 中,防止事件传递的方法
+     * @param ev
+     * @return
+     */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         //要求父层视图不拦截事件
@@ -290,4 +296,7 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
         getParent().requestDisallowInterceptTouchEvent(true);
         return super.dispatchTouchEvent(ev);
     }
+
+
+
 }

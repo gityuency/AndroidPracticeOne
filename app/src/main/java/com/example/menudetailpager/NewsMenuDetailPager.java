@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.example.activitys.MainActivity;
 import com.example.base.MenuDetailBasePager;
 import com.example.beijingnews.R;
 import com.example.domain.NewsCenterPagerBean;
 import com.example.menudetailpager.tabledetailpager.TabDetailPager;
 import com.example.utils.LogUtil;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.viewpagerindicator.TabPageIndicator;
 
 import org.xutils.view.annotation.ViewInject;
@@ -100,9 +102,37 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
         tabPageIndicator.setViewPager(viewPager);
 
         //主页以后监听页面的变化, TabPageIndicator 监听页面的变化
+        tabPageIndicator.setOnPageChangeListener(new MyPageChangeListener());
+
+    }
 
 
+    class MyPageChangeListener implements ViewPager.OnPageChangeListener {
 
+        @Override
+        public void onPageScrolled(int i, float v, int i1) {
+
+        }
+
+        @Override
+        public void onPageSelected(int i) {
+            if (i == 0) {  //slidingmenu可以全屏滑动
+                isEnableSlidingMenu(SlidingMenu.TOUCHMODE_FULLSCREEN);
+            } else {  //slidingmenu 不 可以全屏滑动
+                isEnableSlidingMenu(SlidingMenu.TOUCHMODE_NONE);
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int i) {
+
+        }
+    }
+
+
+    private void isEnableSlidingMenu(int touchmode) {
+        MainActivity mainActivity = (MainActivity) context;
+        mainActivity.getSlidingMenu().setTouchModeAbove(touchmode);
     }
 
 
@@ -110,6 +140,7 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
 
         /**
          * 这个函数返回上方 indicator 的标题 这个标题应该是被第三方截获了
+         *
          * @param position
          * @return
          */
