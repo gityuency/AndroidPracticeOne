@@ -1,7 +1,7 @@
 package com.example.utils;
 
 /**
- * 常量类
+ * 常量类  https://www.jianshu.com/p/c54e25349b77
  */
 public class Constants {
 
@@ -19,6 +19,13 @@ public class Constants {
      */
     public static final String NEWSCENTER_PAGER_URL = BASE_URL + "https://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/0-10.html";
 
+
+
+
+    /**
+     * 新闻中心页面 下方
+     */
+    public static final String NEWSCENTER_DETAIL_PAGER = "https://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/11-12.html";
 
 
     // 网易云的api  "https://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/0-10.html";
