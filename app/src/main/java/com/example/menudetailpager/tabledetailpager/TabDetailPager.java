@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.base.MenuDetailBasePager;
 import com.example.beijingnews.R;
 import com.example.domain.NewsCenterPagerBean;
@@ -26,6 +28,7 @@ import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
+import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import java.util.List;
@@ -41,6 +44,12 @@ public class TabDetailPager extends MenuDetailBasePager {
     private LinearLayout ll_point_group;
 
     private ListView listview;
+
+
+    /**
+     * xUtils 也需要设置默认的图片 这个是设置选项
+     */
+    private ImageOptions imageOptions;
 
     ///顶部轮播图部分的数据
     private List<TabDetailPagerBean.TopnewsBean> topNews;
@@ -60,22 +69,27 @@ public class TabDetailPager extends MenuDetailBasePager {
         super(context);
 
         this.childrenBean = childrenBean;
+
+        //设置默认的图片 的一系列参数
+        imageOptions = new ImageOptions.Builder().setSize(DensityUtil.dip2px(context, 100), DensityUtil.dip2px(context, 100)).setRadius(DensityUtil.dip2px(context, 5)).setCrop(true).setImageScaleType(ImageView.ScaleType.CENTER_CROP).setLoadingDrawableId(R.drawable.news_pic_default).setFailureDrawableId(R.drawable.news_pic_default).build();
+
     }
 
     @Override
     public View initView() {
 
         View view = View.inflate(context, R.layout.tabdetail_pager, null);
-
-
-        viewpager = view.findViewById(R.id.viewpager);
-
-        tv_title = view.findViewById(R.id.tv_title);
-
-        ll_point_group = view.findViewById(R.id.ll_point_group);
-
         listview = view.findViewById(R.id.listview);
 
+
+        View topNewsView = View.inflate(context, R.layout.topnews, null);
+        viewpager = topNewsView.findViewById(R.id.viewpager);
+        tv_title = topNewsView.findViewById(R.id.tv_title);
+        ll_point_group = topNewsView.findViewById(R.id.ll_point_group);
+
+
+        //把顶部轮播图部分视图,以头的方式添加到ListView中
+        listview.addHeaderView(topNewsView);   //UITableView 的 Header
 
         return view;
     }
@@ -215,7 +229,13 @@ public class TabDetailPager extends MenuDetailBasePager {
 
             viewHolder.tv_time.setText(newsBean.getPubdate());
 
-            x.image().bind(viewHolder.iv_icon, newsBean.getListimage());
+
+            //x.image().bind(viewHolder.iv_icon, newsBean.getListimage(),imageOptions); //加上了图片的默认设置参数
+
+
+            //另一种图片的请求方式 Glide
+            Glide.with(context).load(newsBean.getListimage()).diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.iv_icon);
+
 
             return convertView;
             //return null;
