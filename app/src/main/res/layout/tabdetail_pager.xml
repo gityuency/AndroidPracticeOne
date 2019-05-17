@@ -49,7 +49,11 @@
     </RelativeLayout>
 
 
+    <!--android:cacheColorHint="@android:color/transparent"  去掉listview 默认的有的分割线-->
+    <!--android:divider="@null"-->
     <ListView
+        android:divider="@null"
+        android:cacheColorHint="@android:color/transparent"
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

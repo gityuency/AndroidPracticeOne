@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -43,6 +44,16 @@ public class TabDetailPager extends MenuDetailBasePager {
 
     ///顶部轮播图部分的数据
     private List<TabDetailPagerBean.TopnewsBean> topNews;
+
+    /**
+     * 下方Listview 的数据集合
+     */
+    private List<TabDetailPagerBean.NewsBean> news;
+
+    /**
+     * 列表的适配器
+     */
+    private TabDetailPagerListAdapter adapter;
 
 
     public TabDetailPager(Context context, NewsCenterPagerBean.DataBean.ChildrenBean childrenBean) {
@@ -140,7 +151,84 @@ public class TabDetailPager extends MenuDetailBasePager {
         tv_title.setText(topNews.get(prePosition).getTitle());  //默认的时候后显示 第 0 个, 这个需要提前写,因为不在
 
 
+        //设置listview的适配器
+        news = bean.getNews();
+
+
+        //设置listview的适配器
+        adapter = new TabDetailPagerListAdapter();
+        listview.setAdapter(adapter);
+
     }
+
+    /**
+     * 适配器
+     */
+    class TabDetailPagerListAdapter extends BaseAdapter {
+
+
+        @Override
+        public int getCount() {
+            return news.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+
+            //返回一个视图
+
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {   //这个函数的作用就是返回 cell  iOS 里面的
+
+            ViewHolder viewHolder;
+
+            if (convertView == null) {
+
+                convertView = View.inflate(context, R.layout.item_tabdetail_pager, null);
+
+                viewHolder = new ViewHolder();
+                viewHolder.iv_icon = convertView.findViewById(R.id.iv_icon);
+                viewHolder.tv_title = convertView.findViewById(R.id.tv_title);
+                viewHolder.tv_time = convertView.findViewById(R.id.tv_time);
+
+                convertView.setTag(viewHolder);  //设置Tag保存这个东西
+
+            } else {
+
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
+
+
+            //根据位置得到数据
+            TabDetailPagerBean.NewsBean newsBean = news.get(position);
+
+            viewHolder.tv_title.setText(newsBean.getTitle());
+
+            viewHolder.tv_time.setText(newsBean.getPubdate());
+
+            x.image().bind(viewHolder.iv_icon, newsBean.getListimage());
+
+            return convertView;
+            //return null;
+        }
+    }
+
+    //然后就是写一个Viewholder  这个class 要使用 static
+    static class ViewHolder {
+        ImageView iv_icon;
+        TextView tv_title;
+        TextView tv_time;
+    }
+
 
     /**
      * 添加红点
