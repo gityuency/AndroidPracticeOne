@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +24,7 @@ import com.example.utils.DensityUtil;
 import com.example.utils.LogUtil;
 import com.example.utils.YuencyFakeDataTool;
 import com.example.view.HorizontalScrollViewPager;
+import com.example.view.RefreshListView;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
@@ -44,7 +44,7 @@ public class TabDetailPager extends MenuDetailBasePager {
 
     private LinearLayout ll_point_group;
 
-    private ListView listview;
+    private RefreshListView  listview;
 
 
     /**
