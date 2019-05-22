@@ -2,6 +2,7 @@ package com.example.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -47,6 +48,11 @@ public class RefreshListView extends ListView {
      */
     private TextView tv_time;
 
+    /**
+     * 刷新控件的高度
+     */
+    private int pullDownRefreshHeight;
+
     /// 生成了三个构造方法  然后就是第一个构造方法调用第二个构造方法,第二个构造方法调用第三个构造方法
     public RefreshListView(Context context) {
         //super(context);
@@ -79,13 +85,69 @@ public class RefreshListView extends ListView {
         tv_time = headerView.findViewById(R.id.tv_time);
 
 
+        ll_pull_down_refresh.measure(0, 0); //这里面两个参数传递0, 这两个参数可能对测量时没有影响的
+        pullDownRefreshHeight = ll_pull_down_refresh.getMeasuredHeight(); //拿到测量的高度
+
+
+        //需要得到线性布局的高,把这个高度设置top padding
+        ll_pull_down_refresh.setPadding(0, -pullDownRefreshHeight, 0, 0);
+
 
         //添加头
         addHeaderView(headerView);  // 这么写也可以 RefreshListView.this.addHeaderView(headerView)
 
 
+    }
 
 
+    private float startY = -1;
+
+    /**
+     * 重写这个方法.
+     *
+     * @param ev
+     * @return
+     */
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+
+        switch (ev.getAction()) {
+
+            case MotionEvent.ACTION_DOWN:
+
+                //记录其实坐标
+                startY = ev.getY();
+
+
+                break;
+            case MotionEvent.ACTION_MOVE:
+
+                if (startY == -1) {
+                    startY = ev.getY();
+                }
+
+                //2.来到新的坐标
+                float endY = ev.getY();
+
+                //3.计算滑动的距离
+                float distanceY = endY - startY;
+
+                if (distanceY > 0) {  //下拉
+                    int paddingTop = (int) (-pullDownRefreshHeight + distanceY);
+                    ll_pull_down_refresh.setPadding(0, paddingTop, 0, 0);
+                }
+
+                break;
+            case MotionEvent.ACTION_UP:
+
+                startY = -1;
+                break;
+
+
+        }
+
+
+        return super.onTouchEvent(ev);
     }
 
 

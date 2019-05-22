@@ -15,11 +15,13 @@
         <!--useLevel false - 持续显示  true - 若隐若现 -->
 
         <gradient
-            android:centerColor="#ff00ff"
+            android:centerColor="#FF2261"
             android:endColor="#00ffff"
             android:startColor="#00ff00"
             android:type="sweep" />
 
     </shape>
+
+
 
 </rotate>

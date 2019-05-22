@@ -16,21 +16,22 @@
 
         <FrameLayout
             android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center">
 
             <ImageView
                 android:id="@+id/iv_arrow"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:scaleType="fitXY"
                 android:src="@drawable/ssdk_oks_ptr_ptr" />
 
             <ProgressBar
+                android:visibility="gone"
                 android:id="@+id/pb_status"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:indeterminateDrawable="@drawable/custom_progressbar" />
 
 
