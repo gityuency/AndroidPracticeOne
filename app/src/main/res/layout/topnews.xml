@@ -6,7 +6,7 @@
     android:layout_height="180dp">
 
     <!--这个viewpager 在这里需要写一个高度, 因为不要这么做就无法确定这个东西的高度-->
-    <android.support.v4.view.ViewPager
+    <com.example.view.HorizontalScrollViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="180dp"

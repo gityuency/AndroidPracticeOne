@@ -24,6 +24,7 @@ import com.example.utils.Constants;
 import com.example.utils.DensityUtil;
 import com.example.utils.LogUtil;
 import com.example.utils.YuencyFakeDataTool;
+import com.example.view.HorizontalScrollViewPager;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
@@ -37,7 +38,7 @@ public class TabDetailPager extends MenuDetailBasePager {
 
     private final NewsCenterPagerBean.DataBean.ChildrenBean childrenBean;
 
-    private ViewPager viewpager;
+    private HorizontalScrollViewPager viewpager;
 
     private TextView tv_title;
 
@@ -353,6 +354,7 @@ public class TabDetailPager extends MenuDetailBasePager {
             //super.destroyItem(container, position, object);
         }
     }
+
 
 
 }
