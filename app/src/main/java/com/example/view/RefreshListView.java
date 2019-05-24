@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import com.example.beijingnews.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * 自定义下拉刷新 ListView
  */
@@ -215,10 +218,16 @@ public class RefreshListView extends ListView {
                     //正在刷新
                     CURRENTSTATUS = REFRESHING;
 
-
-                    ll_pull_down_refresh.setPadding(0, 00, 0, 0);
-
                     refreshViewState();
+
+                    ll_pull_down_refresh.setPadding(0, 0, 0, 0);
+
+
+                    //回调接口
+                    if (mOnRefreshListener != null) {  //需要判断这个东西是否为空,否则容易引起崩溃
+                        mOnRefreshListener.onPullDownRefresh();
+                    }
+
                 }
 
                 break;
@@ -252,4 +261,96 @@ public class RefreshListView extends ListView {
                 break;
         }
     }
+
+    /**
+     * 设置刷新结束 当联网成功和失败的回调
+     * 用于刷新状态的还原
+     */
+    public void setOnRefreshFinish(boolean b) {
+
+        tv_status.setText("下拉刷新---");
+        CURRENTSTATUS = PULL_DOWN_REFRESH;
+        iv_arrow.clearAnimation();
+        pb_status.setVisibility(GONE);
+        iv_arrow.setVisibility(VISIBLE);
+
+
+        //隐藏下拉刷新控件
+        ll_pull_down_refresh.setPadding(0, -pullDownRefreshHeight, 0, 0);
+
+
+        if (b) {  //设置最新的更新时间
+            tv_time.setText("上次更新时间" + getSystemTime());
+        }
+    }
+
+    /**
+     * 得到当前安卓系统的时间
+     */
+    private String getSystemTime() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(new Date());
+    }
+
+
+    //定义接口实现刷新回调
+    public interface OnRefreshListener {
+
+        /**
+         * 当下拉刷新的时候回调这个方法
+         */
+        public void onPullDownRefresh();
+    }
+
+
+    private OnRefreshListener mOnRefreshListener;
+
+
+    /**
+     * 设置监听刷新  由外籍设置
+     */
+    public void setOnRefreshListener(OnRefreshListener l) {
+        this.mOnRefreshListener = l;
+
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

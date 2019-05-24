@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -44,7 +45,7 @@ public class TabDetailPager extends MenuDetailBasePager {
 
     private LinearLayout ll_point_group;
 
-    private RefreshListView  listview;
+    private RefreshListView listview;
 
 
     /**
@@ -92,8 +93,27 @@ public class TabDetailPager extends MenuDetailBasePager {
         //把顶部轮播图部分视图,以头的方式添加到ListView中
         listview.addHeaderView(topNewsView);   //UITableView 的 Header
 
+        //添加监听下拉刷新
+        listview.setOnRefreshListener(new MyOnRefreshListener());
+
+
         return view;
     }
+
+
+    /**
+     * 这个是自己写的接口,用来实现下路刷新的回调
+     */
+    class MyOnRefreshListener implements RefreshListView.OnRefreshListener {
+
+        @Override
+        public void onPullDownRefresh() {
+
+            Toast.makeText(context, "下拉刷新被回调了", Toast.LENGTH_SHORT).show();
+            getDataFromNet();
+        }
+    }
+
 
     @Override
     public void initData() {
@@ -125,10 +145,16 @@ public class TabDetailPager extends MenuDetailBasePager {
 
                 processData(fakeJson);  //解析数据
 
+                //隐藏刷新的控件 + 更新 时间
+
+                listview.setOnRefreshFinish(true);
+
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                //隐藏刷新的控件 + 不更新时间
+                listview.setOnRefreshFinish(false);
 
             }
 
@@ -354,7 +380,6 @@ public class TabDetailPager extends MenuDetailBasePager {
             //super.destroyItem(container, position, object);
         }
     }
-
 
 
 }
