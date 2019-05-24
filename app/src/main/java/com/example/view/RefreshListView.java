@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -53,6 +55,30 @@ public class RefreshListView extends ListView {
      */
     private int pullDownRefreshHeight;
 
+
+    /**
+     * 下拉刷新
+     * 大写  command + shift + u
+     */
+    public static final int PULL_DOWN_REFRESH = 0;
+
+    /**
+     * 手松刷新
+     */
+    public static final int RELEASE_REFRESH = 1;
+
+    /**
+     * 正在刷新
+     */
+    public static final int REFRESHING = 2;
+
+
+    /**
+     * 当前的刷新状态
+     */
+    private int CURRENTSTATUS = PULL_DOWN_REFRESH;
+
+
     /// 生成了三个构造方法  然后就是第一个构造方法调用第二个构造方法,第二个构造方法调用第三个构造方法
     public RefreshListView(Context context) {
         //super(context);
@@ -68,6 +94,24 @@ public class RefreshListView extends ListView {
         super(context, attrs, defStyleAttr);
 
         initHeadView(context);
+        initAnimation();
+    }
+
+
+    private Animation upAnimation;
+
+    private Animation downAnimation;
+
+    private void initAnimation() {
+
+        upAnimation = new RotateAnimation(0, -180, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+        upAnimation.setDuration(500);
+        upAnimation.setFillAfter(true);
+
+        downAnimation = new RotateAnimation(-180, -360, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+        downAnimation.setDuration(500);
+        downAnimation.setFillAfter(true);
+
     }
 
     private void initHeadView(Context context) {
@@ -118,13 +162,17 @@ public class RefreshListView extends ListView {
                 //记录其实坐标
                 startY = ev.getY();
 
-
                 break;
             case MotionEvent.ACTION_MOVE:
-
                 if (startY == -1) {
                     startY = ev.getY();
                 }
+
+                if (CURRENTSTATUS == REFRESHING) {
+                    break;
+
+                }
+
 
                 //2.来到新的坐标
                 float endY = ev.getY();
@@ -134,21 +182,74 @@ public class RefreshListView extends ListView {
 
                 if (distanceY > 0) {  //下拉
                     int paddingTop = (int) (-pullDownRefreshHeight + distanceY);
+
+
+                    if (paddingTop < 0 && CURRENTSTATUS != PULL_DOWN_REFRESH) {
+                        //下拉刷新状态
+                        CURRENTSTATUS = PULL_DOWN_REFRESH;
+                        //更新状态
+                        refreshViewState();
+
+                    } else if (paddingTop > 0 && CURRENTSTATUS != RELEASE_REFRESH) {
+                        //手松刷新状态
+                        CURRENTSTATUS = RELEASE_REFRESH;
+                        //更新状态
+                        refreshViewState();
+
+                    }
+
+
                     ll_pull_down_refresh.setPadding(0, paddingTop, 0, 0);
                 }
-
                 break;
             case MotionEvent.ACTION_UP:
 
                 startY = -1;
+
+                if (CURRENTSTATUS == PULL_DOWN_REFRESH) {
+
+                    ll_pull_down_refresh.setPadding(0, -pullDownRefreshHeight, 0, 0);
+
+                } else if (CURRENTSTATUS == RELEASE_REFRESH) {
+
+                    //正在刷新
+                    CURRENTSTATUS = REFRESHING;
+
+
+                    ll_pull_down_refresh.setPadding(0, 00, 0, 0);
+
+                    refreshViewState();
+                }
+
                 break;
-
-
         }
-
 
         return super.onTouchEvent(ev);
     }
 
+    private void refreshViewState() {
 
+        switch (CURRENTSTATUS) {
+
+            case PULL_DOWN_REFRESH:
+
+                iv_arrow.startAnimation(downAnimation);
+                tv_status.setText("下拉刷新.....");
+
+                break;
+            case RELEASE_REFRESH:
+
+                iv_arrow.startAnimation(upAnimation);
+                tv_status.setText("手松刷新.....");
+
+                break;
+            case REFRESHING:
+
+                tv_status.setText("正在刷新.....");
+                pb_status.setVisibility(VISIBLE);
+                iv_arrow.clearAnimation();
+                iv_arrow.setVisibility(GONE);
+                break;
+        }
+    }
 }
