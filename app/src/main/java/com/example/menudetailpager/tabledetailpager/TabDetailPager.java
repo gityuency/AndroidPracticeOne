@@ -112,6 +112,12 @@ public class TabDetailPager extends MenuDetailBasePager {
             Toast.makeText(context, "下拉刷新被回调了", Toast.LENGTH_SHORT).show();
             getDataFromNet();
         }
+
+        @Override
+        public void onLoadMore() {
+            Toast.makeText(context, "上拉加载回调了", Toast.LENGTH_SHORT).show();
+
+        }
     }
 
 
