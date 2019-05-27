@@ -66,6 +66,11 @@ public class TabDetailPager extends MenuDetailBasePager {
      */
     private TabDetailPagerListAdapter adapter;
 
+    /**
+     * 加载更多
+     */
+    private boolean isLoadMore;
+
 
     public TabDetailPager(Context context, NewsCenterPagerBean.DataBean.ChildrenBean childrenBean) {
         super(context);
@@ -117,7 +122,49 @@ public class TabDetailPager extends MenuDetailBasePager {
         public void onLoadMore() {
             Toast.makeText(context, "上拉加载回调了", Toast.LENGTH_SHORT).show();
 
+            
+            getMoreDataFronNext();
         }
+    }
+
+    private void getMoreDataFronNext() {
+
+
+        RequestParams params = new RequestParams(Constants.NEWSCENTER_DETAIL_PAGER_Load_MORE);
+        params.setConnectTimeout(4000);
+        x.http().get(params, new Callback.CommonCallback<String>() {
+
+            @Override
+            public void onSuccess(String result) {
+
+                // 这里弄个假数据数据
+                String fakeJson = YuencyFakeDataTool.getJson("tabdetailpagerbean_more.json", context);
+
+                //解析数据,
+                LogUtil.e("加载更多数据" + result);
+                isLoadMore = true;
+
+                processData(fakeJson);
+
+                listview.setOnRefreshFinish(false);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e("加载更多数据 _ 出现错误");
+                listview.setOnRefreshFinish(false);
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+                LogUtil.e("加载更多数据 _ 取消" + cex.getMessage());
+            }
+
+            @Override
+            public void onFinished() {
+                LogUtil.e("加载更多数据 _ 请求结束");
+            }
+        });
     }
 
 
@@ -185,26 +232,48 @@ public class TabDetailPager extends MenuDetailBasePager {
 
         LogUtil.e("*** 打印请求得到的数据 ****************************" + bean.getTopnews().get(1).getTitle());
 
-        topNews = bean.getTopnews();
 
-        //设置Viewpager的适配器
-        viewpager.setAdapter(new TabDetailPagerTopNewsAdapter());
+        //默认和加载更多
+        if (!isLoadMore) {
+            //默认
 
-        //添加红点,
-        addPoint();
+            topNews = bean.getTopnews();
 
-        //监听页面的改变 设置红点变化和文本变化
-        viewpager.addOnPageChangeListener(new MyOnPageChangeListener());
-        tv_title.setText(topNews.get(prePosition).getTitle());  //默认的时候后显示 第 0 个, 这个需要提前写,因为不在
+            //设置Viewpager的适配器
+            viewpager.setAdapter(new TabDetailPagerTopNewsAdapter());
+
+            //添加红点,
+            addPoint();
+
+            //监听页面的改变 设置红点变化和文本变化
+            viewpager.addOnPageChangeListener(new MyOnPageChangeListener());
+            tv_title.setText(topNews.get(prePosition).getTitle());  //默认的时候后显示 第 0 个, 这个需要提前写,因为不在
 
 
-        //设置listview的适配器
-        news = bean.getNews();
+            //设置listview的适配器
+            news = bean.getNews();
 
 
-        //设置listview的适配器
-        adapter = new TabDetailPagerListAdapter();
-        listview.setAdapter(adapter);
+            //设置listview的适配器
+            adapter = new TabDetailPagerListAdapter();
+            listview.setAdapter(adapter);
+
+        } else {
+            //加载更多
+
+            isLoadMore = false;
+
+
+            //添加到原来的集合中
+            news.addAll(bean.getNews());
+
+            //刷新适配器
+            adapter.notifyDataSetChanged();
+
+        }
+
+
+
 
     }
 

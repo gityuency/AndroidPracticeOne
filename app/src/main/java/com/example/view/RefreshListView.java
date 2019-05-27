@@ -123,7 +123,7 @@ public class RefreshListView extends ListView {
 
         footView = View.inflate(context, R.layout.refresh_footer, null);
         footView.measure(0, 0); //先测量
-        footerViewHeight = footView.getMeasuredHeight();    //然后拿到测量的数值
+        footerViewHeight = 500; // footView.getMeasuredHeight();    //然后拿到测量的数值
 
         footView.setPadding(0, -footerViewHeight, 0, 0);
 
@@ -334,20 +334,34 @@ public class RefreshListView extends ListView {
      */
     public void setOnRefreshFinish(boolean b) {
 
-        tv_status.setText("下拉刷新---");
-        CURRENTSTATUS = PULL_DOWN_REFRESH;
-        iv_arrow.clearAnimation();
-        pb_status.setVisibility(GONE);
-        iv_arrow.setVisibility(VISIBLE);
+        if (isLoadMore) {
+            //加载更多
+            isLoadMore = false;
+            //隐藏副局
+            footView.setPadding(0, -footerViewHeight, 0, 0);
 
 
-        //隐藏下拉刷新控件
-        ll_pull_down_refresh.setPadding(0, -pullDownRefreshHeight, 0, 0);
+        } else {
+
+            //下拉刷新
+
+            tv_status.setText("下拉刷新---");
+            CURRENTSTATUS = PULL_DOWN_REFRESH;
+            iv_arrow.clearAnimation();
+            pb_status.setVisibility(GONE);
+            iv_arrow.setVisibility(VISIBLE);
 
 
-        if (b) {  //设置最新的更新时间
-            tv_time.setText("上次更新时间" + getSystemTime());
+            //隐藏下拉刷新控件
+            ll_pull_down_refresh.setPadding(0, -pullDownRefreshHeight, 0, 0);
+
+
+            if (b) {  //设置最新的更新时间
+                tv_time.setText("上次更新时间" + getSystemTime());
+            }
         }
+
+
     }
 
     /**

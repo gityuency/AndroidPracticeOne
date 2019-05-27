@@ -28,6 +28,13 @@ public class Constants {
     public static final String NEWSCENTER_DETAIL_PAGER = "https://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/11-12.html";
 
 
+    /**
+     * 新闻中心页面 加载更多
+     */
+    public static final String NEWSCENTER_DETAIL_PAGER_Load_MORE = "https://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/12-13.html";
+
+
+
     // 网易云的api  "https://3g.163.com/touch/reconstruct/article/list/BBM54PGAwangning/0-10.html";
 
 }
