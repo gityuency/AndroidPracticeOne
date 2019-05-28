@@ -19,13 +19,15 @@ import com.example.base.MenuDetailBasePager;
 import com.example.beijingnews.R;
 import com.example.domain.NewsCenterPagerBean;
 import com.example.domain.TabDetailPagerBean;
+import com.example.refreshlistview.RefreshListView;
 import com.example.utils.CacheUtils;
 import com.example.utils.Constants;
 import com.example.utils.DensityUtil;
 import com.example.utils.LogUtil;
 import com.example.utils.YuencyFakeDataTool;
 import com.example.view.HorizontalScrollViewPager;
-import com.example.view.RefreshListView;
+
+
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
