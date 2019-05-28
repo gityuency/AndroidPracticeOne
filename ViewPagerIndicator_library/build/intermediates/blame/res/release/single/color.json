@@ -1,15 +1,15 @@
 [
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/res/merged/release/color/abc_search_url_text.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/cb6f818d2a152690a1a4cb0a7df1e06c/res/color/abc_search_url_text.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/4d22250616feb122b9c5a2e6475bfcb4/res/color/abc_search_url_text.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/res/merged/release/color/abc_secondary_text_material_light.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/cb6f818d2a152690a1a4cb0a7df1e06c/res/color/abc_secondary_text_material_light.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/4d22250616feb122b9c5a2e6475bfcb4/res/color/abc_secondary_text_material_light.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/res/merged/release/color/abc_primary_text_disable_only_material_light.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/cb6f818d2a152690a1a4cb0a7df1e06c/res/color/abc_primary_text_disable_only_material_light.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/4d22250616feb122b9c5a2e6475bfcb4/res/color/abc_primary_text_disable_only_material_light.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/res/merged/release/color/vpi__dark_theme.xml",
@@ -17,19 +17,19 @@
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/res/merged/release/color/abc_secondary_text_material_dark.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/cb6f818d2a152690a1a4cb0a7df1e06c/res/color/abc_secondary_text_material_dark.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/4d22250616feb122b9c5a2e6475bfcb4/res/color/abc_secondary_text_material_dark.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/res/merged/release/color/switch_thumb_material_dark.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/cb6f818d2a152690a1a4cb0a7df1e06c/res/color/switch_thumb_material_dark.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/4d22250616feb122b9c5a2e6475bfcb4/res/color/switch_thumb_material_dark.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/res/merged/release/color/abc_primary_text_disable_only_material_dark.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/cb6f818d2a152690a1a4cb0a7df1e06c/res/color/abc_primary_text_disable_only_material_dark.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/4d22250616feb122b9c5a2e6475bfcb4/res/color/abc_primary_text_disable_only_material_dark.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/res/merged/release/color/abc_primary_text_material_dark.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/cb6f818d2a152690a1a4cb0a7df1e06c/res/color/abc_primary_text_material_dark.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/4d22250616feb122b9c5a2e6475bfcb4/res/color/abc_primary_text_material_dark.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/res/merged/release/color/vpi__light_theme.xml",
@@ -37,10 +37,10 @@
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/res/merged/release/color/abc_primary_text_material_light.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/cb6f818d2a152690a1a4cb0a7df1e06c/res/color/abc_primary_text_material_light.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/4d22250616feb122b9c5a2e6475bfcb4/res/color/abc_primary_text_material_light.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/res/merged/release/color/switch_thumb_material_light.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/cb6f818d2a152690a1a4cb0a7df1e06c/res/color/switch_thumb_material_light.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/4d22250616feb122b9c5a2e6475bfcb4/res/color/switch_thumb_material_light.xml"
     }
 ]

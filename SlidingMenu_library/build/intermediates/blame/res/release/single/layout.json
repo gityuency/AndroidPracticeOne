@@ -1,43 +1,43 @@
 [
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_template_part_time.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/b6bd8acb55244ef0bcf082c94f5420db/res/layout/notification_template_part_time.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/c119d6f370da4a255322cf25b3c167ba/res/layout/notification_template_part_time.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_template_lines_media.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/2143c1457060cb3cddc224701048827c/res/layout/notification_template_lines_media.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/a33baf913b938a6c611185619149c16b/res/layout/notification_template_lines_media.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_template_big_media_narrow.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/2143c1457060cb3cddc224701048827c/res/layout/notification_template_big_media_narrow.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/a33baf913b938a6c611185619149c16b/res/layout/notification_template_big_media_narrow.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_media_action.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/2143c1457060cb3cddc224701048827c/res/layout/notification_media_action.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/a33baf913b938a6c611185619149c16b/res/layout/notification_media_action.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_template_icon_group.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/b6bd8acb55244ef0bcf082c94f5420db/res/layout/notification_template_icon_group.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/c119d6f370da4a255322cf25b3c167ba/res/layout/notification_template_icon_group.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_template_media_custom.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/2143c1457060cb3cddc224701048827c/res/layout/notification_template_media_custom.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/a33baf913b938a6c611185619149c16b/res/layout/notification_template_media_custom.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_media_cancel_action.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/2143c1457060cb3cddc224701048827c/res/layout/notification_media_cancel_action.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/a33baf913b938a6c611185619149c16b/res/layout/notification_media_cancel_action.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_template_big_media.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/2143c1457060cb3cddc224701048827c/res/layout/notification_template_big_media.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/a33baf913b938a6c611185619149c16b/res/layout/notification_template_big_media.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_template_big_media_custom.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/2143c1457060cb3cddc224701048827c/res/layout/notification_template_big_media_custom.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/a33baf913b938a6c611185619149c16b/res/layout/notification_template_big_media_custom.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_template_part_chronometer.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/b6bd8acb55244ef0bcf082c94f5420db/res/layout/notification_template_part_chronometer.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/c119d6f370da4a255322cf25b3c167ba/res/layout/notification_template_part_chronometer.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/slidingmenumain.xml",
@@ -45,22 +45,22 @@
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_template_media.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/2143c1457060cb3cddc224701048827c/res/layout/notification_template_media.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/a33baf913b938a6c611185619149c16b/res/layout/notification_template_media.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_template_custom_big.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/b6bd8acb55244ef0bcf082c94f5420db/res/layout/notification_template_custom_big.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/c119d6f370da4a255322cf25b3c167ba/res/layout/notification_template_custom_big.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_template_big_media_narrow_custom.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/2143c1457060cb3cddc224701048827c/res/layout/notification_template_big_media_narrow_custom.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/a33baf913b938a6c611185619149c16b/res/layout/notification_template_big_media_narrow_custom.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_action_tombstone.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/b6bd8acb55244ef0bcf082c94f5420db/res/layout/notification_action_tombstone.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/c119d6f370da4a255322cf25b3c167ba/res/layout/notification_action_tombstone.xml"
     },
     {
         "merged": "/Users/ef/ZAndroidProject/BeiJingNews/SlidingMenu_library/build/intermediates/res/merged/release/layout/notification_action.xml",
-        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/b6bd8acb55244ef0bcf082c94f5420db/res/layout/notification_action.xml"
+        "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/c119d6f370da4a255322cf25b3c167ba/res/layout/notification_action.xml"
     }
 ]

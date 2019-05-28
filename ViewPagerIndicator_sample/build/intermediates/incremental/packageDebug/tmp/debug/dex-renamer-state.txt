@@ -1,4 +1,4 @@
-#Fri May 24 15:15:58 CST 2019
+#Tue May 28 15:58:15 CST 2019
 base.0=/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_sample/build/intermediates/dex/debug/mergeDexDebug/out
 path.0=classes.dex
 renamed.0=classes.dex

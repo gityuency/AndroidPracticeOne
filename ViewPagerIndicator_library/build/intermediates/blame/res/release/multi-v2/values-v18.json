@@ -4,7 +4,7 @@
             "outputFile": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/res/merged/release/values-v18/values-v18.xml",
             "map": [
                 {
-                    "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/cb6f818d2a152690a1a4cb0a7df1e06c/res/values-v18/values-v18.xml",
+                    "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/4d22250616feb122b9c5a2e6475bfcb4/res/values-v18/values-v18.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -19,7 +19,7 @@
             "outputFile": "/Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v18/values-v18.xml",
             "map": [
                 {
-                    "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/cb6f818d2a152690a1a4cb0a7df1e06c/res/values-v18/values-v18.xml",
+                    "source": "/Users/ef/.gradle/caches/transforms-2/files-2.1/4d22250616feb122b9c5a2e6475bfcb4/res/values-v18/values-v18.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

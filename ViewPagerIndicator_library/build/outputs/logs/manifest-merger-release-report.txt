@@ -22,16 +22,16 @@ INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/s
 		INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml
 		INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml
 uses-sdk
-ADDED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml:8:5-43
-INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml:8:5-43
-INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml:8:5-43
-INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml:8:5-43
-INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml:8:5-43
+INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml
+INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml
+INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml
+INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml
 	android:targetSdkVersion
 		INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml
-		ADDED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml:8:5-43
+		ADDED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml
 		INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		ADDED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml:8:15-40
 		INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml
+		ADDED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml
 		INJECTED from /Users/ef/ZAndroidProject/BeiJingNews/ViewPagerIndicator_library/src/main/AndroidManifest.xml
