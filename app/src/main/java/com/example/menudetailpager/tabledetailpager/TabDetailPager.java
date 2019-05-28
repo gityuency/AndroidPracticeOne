@@ -96,7 +96,10 @@ public class TabDetailPager extends MenuDetailBasePager {
 
 
         //把顶部轮播图部分视图,以头的方式添加到ListView中
-        listview.addHeaderView(topNewsView);   //UITableView 的 Header
+        //listview.addHeaderView(topNewsView);   //UITableView 的 Header
+
+        listview.addTopNewsView(topNewsView);
+
 
         //添加监听下拉刷新
         listview.setOnRefreshListener(new MyOnRefreshListener());

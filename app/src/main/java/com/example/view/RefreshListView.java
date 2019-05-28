@@ -99,6 +99,17 @@ public class RefreshListView extends ListView {
      */
     private boolean isLoadMore = false;
 
+    /**
+     * 顶部轮播图部分
+     */
+    private View topNewsView;
+
+
+    /**
+     * listView在Y轴上的坐标
+     */
+    private int listViewOnScreenY = -1;
+
 
     /// 生成了三个构造方法  然后就是第一个构造方法调用第二个构造方法,第二个构造方法调用第三个构造方法
     public RefreshListView(Context context) {
@@ -134,6 +145,18 @@ public class RefreshListView extends ListView {
         //监听listView滚动,滚动到最底部的时候,去干活
         setOnScrollListener(new MyOnScrollListener());
 
+    }
+
+    /**
+     * 添加顶部轮播图
+     *
+     * @param topNewsView
+     */
+    public void addTopNewsView(View topNewsView) {
+        if (topNewsView != null) {
+            this.topNewsView = topNewsView;
+            headerView.addView(topNewsView);
+        }
     }
 
 
@@ -237,6 +260,15 @@ public class RefreshListView extends ListView {
                     startY = ev.getY();
                 }
 
+
+                //判断顶部轮播图是否完全显示,完全显示才会刷新
+                boolean isDisplayTopViews = isDisplayTopoNews();
+                if (!isDisplayTopViews) {
+                    break;
+
+                }
+
+
                 if (CURRENTSTATUS == REFRESHING) {
                     break;
 
@@ -300,6 +332,40 @@ public class RefreshListView extends ListView {
         }
 
         return super.onTouchEvent(ev);
+    }
+
+    /**
+     * 顶部轮播图是否已经完全显示
+     */
+    private boolean isDisplayTopoNews() {
+
+
+        if (topNewsView != null) {
+
+            //得到listvuew在屏幕上的坐标
+            int[] location = new int[2];
+
+            if (listViewOnScreenY == -1) {
+                getLocationOnScreen(location);
+                listViewOnScreenY = location[1];
+            }
+
+            //2得到顶部轮播图在屏幕上的坐标
+            topNewsView.getLocationOnScreen(location);
+            int topNewsViewOnScreenY = location[1];
+
+            //if (listViewOnScreenY <= topNewsViewOnScreenY) {
+            //    return true;
+            //} else {
+            //    return false;
+            //    }
+
+            return listViewOnScreenY <= topNewsViewOnScreenY;
+
+        } else {
+
+            return true;
+        }
     }
 
     private void refreshViewState() {
