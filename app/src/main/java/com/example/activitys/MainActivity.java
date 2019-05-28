@@ -3,7 +3,6 @@ package com.example.activitys;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.beijingnews.R;
@@ -34,6 +33,7 @@ public class MainActivity extends SlidingFragmentActivity {
         // 初始化Fragment
         initFragment();
     }
+
 
 
     private void initSlidingMenu() {
@@ -86,6 +86,7 @@ public class MainActivity extends SlidingFragmentActivity {
 
     /**
      * 得到正文的fragment
+     *
      * @return
      */
     public ContentFragment getContentFragment() {

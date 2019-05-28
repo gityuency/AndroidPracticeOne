@@ -1,12 +1,14 @@
 package com.example.menudetailpager.tabledetailpager;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,6 +40,9 @@ import org.xutils.x;
 import java.util.List;
 
 public class TabDetailPager extends MenuDetailBasePager {
+
+    public static final String READ_ARRAY_ID = "read_array_id";
+
 
     private final NewsCenterPagerBean.DataBean.ChildrenBean childrenBean;
 
@@ -107,7 +112,37 @@ public class TabDetailPager extends MenuDetailBasePager {
         listview.setOnRefreshListener(new MyOnRefreshListener());
 
 
+        //设置listView的item的点击监听
+        listview.setOnItemClickListener(new MyOnItemClickListener());
+
         return view;
+    }
+
+
+    class MyOnItemClickListener implements AdapterView.OnItemClickListener {
+
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            int realPosition = position - 1;
+            TabDetailPagerBean.NewsBean newsData = news.get(realPosition);
+            Toast.makeText(context, "**********************" + newsData.getId() + newsData.getTitle(), Toast.LENGTH_SHORT).show();
+
+            //取出保存的ID
+
+            String idarray = CacheUtils.getString(context, READ_ARRAY_ID);
+
+
+            //判断是否存在,如果不存在,才去保存,并且刷新适配器  newsData.getId()+"" 这是一个变成字符串的骚操作
+            if (!idarray.contains(newsData.getId() + "")) {
+                CacheUtils.putString(context, READ_ARRAY_ID, idarray + newsData.getId() + ",");
+
+                //刷新适配器
+                adapter.notifyDataSetChanged();  // getcount -> getview
+            }
+
+        }
     }
 
 
@@ -127,7 +162,7 @@ public class TabDetailPager extends MenuDetailBasePager {
         public void onLoadMore() {
             Toast.makeText(context, "上拉加载回调了", Toast.LENGTH_SHORT).show();
 
-            
+
             getMoreDataFronNext();
         }
     }
@@ -278,8 +313,6 @@ public class TabDetailPager extends MenuDetailBasePager {
         }
 
 
-
-
     }
 
     /**
@@ -342,6 +375,13 @@ public class TabDetailPager extends MenuDetailBasePager {
 
             //另一种图片的请求方式 Glide
             Glide.with(context).load(newsBean.getListimage()).diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.iv_icon);
+
+            String idArray = CacheUtils.getString(context, READ_ARRAY_ID);
+            if (idArray.contains(newsBean.getId() + "")) {
+                viewHolder.tv_title.setTextColor(Color.RED);
+            } else {
+                viewHolder.tv_title.setTextColor(Color.BLACK);
+            }
 
 
             return convertView;

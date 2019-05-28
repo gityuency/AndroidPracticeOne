@@ -34,3 +34,15 @@ dependencies {
     implementation files('libs/glide-3.7.0.jar')
     compile project(path: ':refreshlistview')
 }
+
+
+//  "As we all know, social media can be both positively and negatively affect our children, but too often it is used in negative ways," she said on Monday.
+//"When children learn positive online behaviours early on, social media can be used in productive ways and affect positive change."
+//5月28日，翻译每日一练 请查收 请做题[胜利][胜利]
+
+
+// 她在周一的时候说:"正如我们知道的, 社交媒体对孩子有积极和消极的影响, 但总是消极地被使用着." 当孩子越早地积极使用社交网络,就能够产生积极的影响.
+
+
+
+
